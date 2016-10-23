@@ -1,11 +1,12 @@
 package com.Duke.Test;
 
-import org.apache.http.impl.execchain.MainClientExec;
-import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import static org.assertj.core.api.Java6Assertions.assertThat;
 
 /**
  * Created by danield on 22/10/2016.
@@ -14,7 +15,11 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  *
  */
 public class Test1{
-//
+
+
+    private final WebDriver driver = new HtmlUnitDriver(DesiredCapabilities.chrome());
+
+    //
 //    Test 1
 //    On the ClearScore website (https://www.clearscore.com), write tests to check that:
 //             The “We use cookies” notification is present
@@ -33,31 +38,15 @@ public class Test1{
 //
 //    }
 
-    public String openWebpage(String webpage){
-
-        System.setProperty("webdriver.firefox.marionette", "./geckodriver.exe");
-
-        WebDriver driver = new FirefoxDriver();
-
-        driver.get(webpage);
-
-        driver.close();
-        driver.quit();
-
-        return webpage;
-    }
-
     @Test
     public void openClearScoreHomepage(){
+        driver.get("http://www.clearscore.com");
+        assertThat(driver.getTitle()).startsWith("Free Credit Scores");
 
-        System.setProperty("webdriver.firefox.marionette", "./geckodriver.exe");
-
-        WebDriver driver = new FirefoxDriver();
-
-        openWebpage("http://www.clearscore.com");
-        Assert.assertTrue("Title should start with Free Credit Scores",
-                driver.getTitle().startsWith("Free Credit Scores"));
-
+        By cookieBar = By.cssSelector("div.cs-cookie.show");
+        assertThat(driver.findElement(cookieBar).isDisplayed()).isTrue();
+        driver.findElement(By.cssSelector("div.cs-cookie.show div span")).click();
+        assertThat(driver.findElement(cookieBar).isDisplayed()).isFalse();
     }
 
 //    @Test
@@ -91,23 +80,14 @@ public class Test1{
 
     @Test
     public void verifyCorrectCookieSetIfUserAcceptsPolicy(){
-
     }
 
     @Test
     public void verifyAcceptCookieIsNotSetIfUserClicksMoreInfoOnCookieBar(){
-
-        WebDriver driver = new FirefoxDriver();
-
         /*Call method to go to clearscore, then use same method as verifyThatCookieBarIsNotPresentOnPageReload*/
-
-        driver.getCurrentUrl().contains("https://www.clearscore.com/privacy-policy/");
-        Assert.assertThat(driver.getCurrentUrl().("https://www.clearscore.com/privacy-policy/"));
-
     }
 
     @Test
     public void verifyCookieBarDoesNotAppearAfterBeingDismissedOnPageReload(){
-
     }
 }

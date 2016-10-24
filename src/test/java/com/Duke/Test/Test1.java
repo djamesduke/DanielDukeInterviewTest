@@ -16,7 +16,7 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 public class Test1{
 
 
-    private final WebDriver driver = new HtmlUnitDriver(DesiredCapabilities.chrome());
+    private final WebDriver driver = new DukeUnitDriver(DesiredCapabilities.chrome());
 
 
 //    Test 1
@@ -32,7 +32,6 @@ public class Test1{
         driver.get("http://www.clearscore.com");
         assertThat(driver.getTitle()).startsWith("Free Credit Scores");
 
-
         By cookieBar = By.cssSelector("div.cs-cookie.show");
 
         assertThat(driver.findElement(cookieBar).isDisplayed()).isTrue();
@@ -43,30 +42,30 @@ public class Test1{
 //    The below test was added to check that the HTMLunitDriver was working correctly. I did get another error code, but different
 //    from that received when running the above test
 //
-//    @Test
-//    public void openRightmoveHomepage(){
-//        driver.get("http://www.rightmove.co.uk");
-//        assertThat(driver.getTitle()).startsWith("UK's number one property website for properties for sale and to rent");
-//
-//
-//        By cookieBar = By.id("cookiemodalbar");
-//
+    @Test
+    public void openRightmoveomepageAndVerifyTheCookieBarCanBeClickedAndIsThenDismissed(){
+        driver.get("http://www.rightmove.co.uk");
+        assertThat(driver.getTitle()).startsWith("UK's number one property website for properties for sale and to rent");
+
+
+        By cookieBar = By.cssSelector("#cookiemodalbar");
+
+        assertThat(driver.findElement(cookieBar).isDisplayed()).isTrue();
+        driver.findElement(By.cssSelector("#cookiemodalbar-button-text")).click();
+        assertThat(driver.findElement(cookieBar).isDisplayed()).isFalse();
+    }
+
+    @Test
+    public void testingGoogle(){
+        driver.get("http://www.google.co.uk");
+        assertThat(driver.getTitle()).startsWith("Google");
+
+//        By cookieBar = By.id("cnsh");
+
 //        assertThat(driver.findElement(cookieBar).isDisplayed()).isTrue();
-//        driver.findElement(By.id("cookiemodalbar-button-text")).click();
+
+//        driver.findElement(By.cssSelector("#cnsh > div > div._tLg > div._sLg > div > div")).click();
 //        assertThat(driver.findElement(cookieBar).isDisplayed()).isFalse();
-//    }
 
-
-    @Test
-    public void verifyCorrectCookieSetIfUserAcceptsPolicy(){
-    }
-
-    @Test
-    public void verifyAcceptCookieIsNotSetIfUserClicksMoreInfoOnCookieBar(){
-        /*Call method to go to clearscore, then use same method as verifyThatCookieBarIsNotPresentOnPageReload*/
-    }
-
-    @Test
-    public void verifyCookieBarDoesNotAppearAfterBeingDismissedOnPageReload(){
     }
 }

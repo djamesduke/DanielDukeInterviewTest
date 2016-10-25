@@ -32,11 +32,14 @@ Notes:<br>
 Additional Questions:
 
 1. How would you integrate the tests you have written into a continuous integration environment?
-    * Create a jenkins job
-    * Create a 
+<p>I'll use Jenkins as the CI env in this example as that's what we use at Rightmove 
+    * Create a Jenkins job for the test suite 
+    * Configure the job to run against every commit.
+    * Concentrate on reducing the speed of the test suite to allow for the fastest feedback possible
 
 2. How would you make your API test simulate being as realistic a user as possible?
-
+    * For multiple requests, you could stagger the requests which would simulate user interaction
+    * Not quite sure how you would do this for a single API request test
 
 3. How would you approach running the same tests across mobile devices and different browsers?
     * WebDriver has the functionality to 

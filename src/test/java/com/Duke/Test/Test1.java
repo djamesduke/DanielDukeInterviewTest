@@ -10,6 +10,7 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 
 /**
  * Created by danield on 22/10/2016.
+//
 //    Test 1
 //    On the ClearScore website (https://www.clearscore.com), write tests to check that:
 //             The “We use cookies” notification is present

@@ -8,12 +8,13 @@ import static com.jayway.restassured.RestAssured.given;
 
 /**
  * Created by danield on 22/10/2016.
+//
 //      Test 2
- //     On the ClearScore login page (https://www.clearscore.com/account/login), write an API test to check that:
- //             A failed login returns the correct API response (HTTP 403 error)
+//      On the ClearScore login page (https://www.clearscore.com/account/login), write an API test to check that:
+//           A failed login returns the correct API response (HTTP 403 error)
  *
  *
- * Tested manually first using POSTMan to verify correct JSON and end point
+ *      Tested manually first using POSTMan to verify correct JSON and end point
  */
 
 public class Test2 {

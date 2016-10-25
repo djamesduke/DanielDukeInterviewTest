@@ -1,12 +1,16 @@
 package com.Duke.Test;
 
+import org.junit.Assert;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 /**
  * Created by danield on 22/10/2016.
- //    Test 1
+ //    Test 3
  //    On the ClearScore savings calculator (https://www.clearscore.com/savings-calculator/), write tests to check that:
  //             When updating your current score to 50, and score goal to 680 that –
  //             Your current score interest rate, costs, and cards available are: 36.5%, £849, and 22
@@ -20,7 +24,12 @@ public class Test3 {
     @Test
     public void shouldShowCorrespondingInterestRateAndCostsAndCards(){
 
+        // Go to the ClearScore site and verify it's the correct page
+        driver.get("https://www.clearscore.com/savings-calculator/");
+        assertThat(driver.getTitle().startsWith("Free Credit Scores"));
 
+        // shouldShow
+        driver.findElement(By.cssSelector(""))
 
     }
 
